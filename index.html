@@ -1,4 +1,4 @@
-<html lang="en"> <!--  -->
+<html > <!-- Group 3 BSCS 5 A Portfolio-->
   <head>
 
     <title>Index</title>
@@ -20,10 +20,7 @@
     <nav class="navbar navbar-default navbar-static-top" id="my-navbar">
       <div class="container">
         <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="glyphicon glyphicon-align-justify"></span>
-        </button>
-        <a href="#" class="navbar-brand">Muhammad Moosa</a>
+         <a href="#" class="navbar-brand">Muhammad Moosa</a>
         </div> <!-- Navbar Header -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -292,7 +289,8 @@
        <div class="container-fluid" id="Contact">
          <section>
             <div class="text-center" style="margin-bottom:80px;">
-          <h2 style="font-family:Lucida Bright; color:#FFFFFF; "><span class="glyphicon glyphicon-menu-right"></span> Contact Me</h2>
+          <h2 style="font-family:Lucida Bright; color:#FFFFFF; ">
+          <span class="glyphicon glyphicon-menu-right"></span> Contact Me</h2>
         </div><!-- Page Header -->
 
         <div class="row">
@@ -363,94 +361,7 @@
     <a href="#"><span id="back-to-top" class="glyphicon glyphicon-chevron-up"></span></a>
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    $("document").ready(function(){
-var form = $("#form");
-var name = $("#name");
-var namedetails = $("#namedetails");
-var email = $("#email");
-var emaildetails = $("#emaildetails");
-var message = $("#message");
-var messagedetails = $("#messagedetails");
-var submit = $("#submit");
-
-name.blur(validateName);
-email.blur(validateEmail);
-message.blur(validateMessage);
-
-submit.click(function(){
-  if(validateName() & validateEmail() & validateMessage()){
-    $.post($("#form").attr("action"),$("#form :input").serializeArray(),function(info){
-  $("#success").html(info).fadeIn();
-  clearInput();
-});
-    $("#form").submit(function(){
-return false;
-});
-    function clearInput(){
-      $("#form :input").each(function(){
-        $(this).val('');
-      });
-    }
-  }
-  else{
-    return false;
-  }
-  });
-
-  function validateName(){
-    if(name.val().length < 5){
-      name.addClass("error");
-      namedetails.text("* Make it 5 characters or more!");
-      namedetails.addClass("span-error");
-      return false;
-    }
-    else
-    {
-      namedetails.text("");
-      namedetails.removeClass("error-span");
-      name.removeClass("error");
-      return true;
-    }
-  }
-
-    function validateEmail(){
-      var a = email.val();
-      var regexp = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
-      if (regexp.test(a)) {
-      emaildetails.text("");
-      emaildetails.removeClass("error-span");
-      email.removeClass("error");
-      return true;
-    }
-    else
-    {
-      emaildetails.text("* Please email@domail.com");
-      emaildetails.addClass("span-error");
-      email.addClass("error");
-      return false;
-    }
-  }
-
-    function validateMessage(){
-    if(message.val().length < 15){
-      message.addClass("error");
-      messagedetails.text("* Make your message 15 characters or long!");
-      messagedetails.addClass("span-error");
-      return false;
-    }
-    else
-    {
-      messagedetails.text("");
-      messagedetails.removeClass("error-span");
-      message.removeClass("error");
-      return true;
-    }
-  }
-
-
-});
-    </script>
+  
     <script>
 
 $(document).ready(function(){  
