@@ -294,7 +294,7 @@
         </div><!-- Page Header -->
 
         <div class="row">
-            <form action="contact.php" method="post" class="form-horizontal" id="form" role="form">
+   <form action="contact.php" method="post" class="form-horizontal" id="form" role="form">
 
               <div class="form-group"><!-- Input One -->
               <div class="row">
@@ -327,7 +327,7 @@
               <div class="form-group"><!-- Input Button -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-5">
-                <!-- Submit button -->
+                <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                   <button id="submit" class="btn btn-lg btn-warning">Send</button>
                 </div>
                 </div>
@@ -336,9 +336,9 @@
           </form>
 
                <!-- Div Success -->
-                <div class="col-lg-10 col-lg-offset-2 alert alert-success fade in" id="success" style="display:none;">
+               <!--  <div class="col-lg-10 col-lg-offset-2 alert alert-success fade in" id="success" style="display:none;">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
+                </div> -->
         </div> <!-- End Row -->
         </section>
        </div>
@@ -361,7 +361,98 @@
     <a href="#"><span id="back-to-top" class="glyphicon glyphicon-chevron-up"></span></a>
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+      <script>
+    $("document").ready(function(){
+var form = $("#form");
+var name = $("#name");
+var namedetails = $("#namedetails");
+var email = $("#email");
+var emaildetails = $("#emaildetails");
+var message = $("#message");
+var messagedetails = $("#messagedetails");
+var submit = $("#submit");
+
+name.blur(validateName);
+email.blur(validateEmail);
+message.blur(validateMessage);
+
+submit.click(function(){
+  if(validateName() & validateEmail() & validateMessage()){
+    $.post($("#form").attr("action"),$("#form :input").serializeArray(),function(info){
+      $("#success").html(info).fadeIn();
+       clearInput();
+    });
+    
+    $("#form").submit(function(){
+      return false;
+    });
+    
+    function clearInput(){
+      $("#form :input").each(function(){
+        $(this).val('');
+      });
+    }
+  }
   
+  else{
+    return false;
+  }
+  });
+
+  function validateName(){
+    if(name.val().length < 5){
+      name.addClass("error");
+      namedetails.text("* Make it 5 characters or more!");
+      namedetails.addClass("span-error");
+      return false;
+    }
+    else
+    {
+      namedetails.text("");
+      namedetails.removeClass("error-span");
+      name.removeClass("error");
+      return true;
+    }
+  }
+
+    function validateEmail(){
+      var a = email.val();
+      var regexp = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
+      if (regexp.test(a)) {
+      emaildetails.text("");
+      emaildetails.removeClass("error-span");
+      email.removeClass("error");
+      return true;
+    }
+    else
+    {
+      emaildetails.text("* Please email@domail.com");
+      emaildetails.addClass("span-error");
+      email.addClass("error");
+      return false;
+    }
+  }
+
+    function validateMessage(){
+    if(message.val().length < 15){
+      message.addClass("error");
+      messagedetails.text("* Make your message 15 characters or long!");
+      messagedetails.addClass("span-error");
+      return false;
+    }
+    else
+    {
+      messagedetails.text("");
+      messagedetails.removeClass("error-span");
+      message.removeClass("error");
+      return true;
+    }
+  }
+
+
+});
+    </script>
+
     <script>
 
 $(document).ready(function(){  

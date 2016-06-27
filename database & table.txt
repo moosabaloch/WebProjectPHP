@@ -1,0 +1,13 @@
+CREATE DATABASE moosa
+
+CREATE TABLE `inbox` (
+`msgid` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`uName` VARCHAR( 60 ) NOT NULL ,
+`uEmail` VARCHAR( 30 ) NOT NULL ,
+`uMessage` TEXT( 500 ) NOT NULL 
+) ENGINE = innodb;
+
+
+
+Note
+First Run Above 2 Query in phpmyadmin for db creation.
