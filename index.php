@@ -294,12 +294,12 @@
         </div><!-- Page Header -->
 
         <div class="row">
-   <form action="contact.php" method="post" class="form-horizontal" id="form" role="form">
+   <form method="post" class="form-horizontal" id="form" role="form">
 
               <div class="form-group"><!-- Input One -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Name" autocomplete="off">
+                  <input type="text" class="form-control" name="name" placeholder="Name" autocomplete="off">
                   <span id="namedetails"></span>
                 </div>
                 </div>
@@ -308,7 +308,7 @@
               <div class="form-group"><!-- Input Two -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <input type="text" class="form-control" name="email" id="email" placeholder="email@domail.com" autocomplete="off">
+                  <input type="text" class="form-control" name="email" placeholder="email@domail.com" autocomplete="off">
                   <span id="emaildetails"></span>
                 </div>
                 </div>
@@ -318,7 +318,7 @@
               <div class="form-group"><!-- Input Four -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <textarea name="message" class="form-control" name="message" id="message" cols="20" rows="8" placeholder="Enter Message Here"></textarea>
+                  <textarea name="message" class="form-control" name="message"  cols="20" rows="8" placeholder="Enter Message Here"></textarea>
                   <span id="messagedetails"></span>
                 </div>
                 </div>
@@ -328,12 +328,37 @@
               <div class="row">
                 <div class="col-md-6 col-md-offset-5">
                 <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
-                  <button id="submit" class="btn btn-lg btn-warning">Send</button>
+                  <button id="submit" class="btn btn-lg btn-primary" name="send">Send</button>
                 </div>
                 </div>
               </div><!-- Form Group -->
-
           </form>
+		  
+		  
+		  <?php
+		  
+		  if(isset($_POST['send']))
+		  {
+				  $name = $_POST['name'];
+				  $email = $_POST['email']; 
+				  $message = $_POST['message'];
+			  
+			  
+				  $con = mysqli_connect("localhost","root","","moosa");
+				  $query = "insert into inbox Values ('','$name','$email','$message','')";
+				  $result = mysqli_query($con,$query);
+												
+				   if(isset($result))
+													
+					{
+						echo"<script>alert('Your Message Has Been Sent');</script>";
+						echo "<script>window.location.assign('index.php')</script>";
+												}
+			  }
+			  
+		  
+		  
+		  ?>
 
                <!-- Div Success -->
                <!--  <div class="col-lg-10 col-lg-offset-2 alert alert-success fade in" id="success" style="display:none;">
