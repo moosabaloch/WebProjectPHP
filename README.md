@@ -16,27 +16,27 @@
 
 
 **Functionality**
-*Page 1 Homepage:*
+<br>*Page 1 Homepage:*
 User can view the whole top to bottom landing page at bottom there is form by which user can submit any type of application to admin or to localhost.
-*Page 2 Inbox Viewer:*
+<br>*Page 2 Inbox Viewer:*
 	This is the page for admin to view all messages submitted by users and admin can delete any particular message and also admin can view any message by clicking on green message icon.
-	*Page 3 Single Message View*
+	<br>*Page 3 Single Message View*
 	In this page admin can only view particular message.
 
 
 ----------
 **How CRUD**
-C = Form Submission.
-R = Reading all messages.
-U = If any message is viewed then status will be updated
-D = Delete of any message by admin
+<br>C = Form Submission.
+<br>R = Reading all messages.
+<br>U = If any message is viewed then status will be updated
+<br>D = Delete of any message by admin
 
 
 ----------
 
 **Instructions**
 Import project to your respective host then open database in my case (PhpMyAdmin) copy the queries from [FILE](https://raw.githubusercontent.com/moosabaloch/WebProjectPHP/master/database%20%26%20table.txt) and run as shown below.
-1: To create database:
+<br>1: To create database:
 
     CREATE DATABASE moosa
 
