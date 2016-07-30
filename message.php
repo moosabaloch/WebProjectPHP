@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <title>Moosa</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -43,12 +42,12 @@
 		 </td>
 		 <td><?php echo $msg[4]; ?></td>
 	   <td><input type="image" height="30" src="images/delete.png" name="delete" value="<?php echo $msg[0]; ?>" alt="Submit"/></td>
+	    
       </tr>
 	  <?php } ?>
     </tbody>
   </table>
   	</form>
-	
 	
 		<?php
 					
@@ -60,9 +59,11 @@
 						$con = mysqli_connect("localhost","root","","moosa");
 						$query_delete = "DELETE FROM inbox WHERE msgid='$id'";
 						$result_delete = mysqli_query($con,$query_delete);
+						
 						echo "<script>window.location.assign('message.php')</script>";
 					}?>
-	
+					
+					
 	
 </div>
 

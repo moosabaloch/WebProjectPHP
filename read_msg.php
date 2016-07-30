@@ -1,33 +1,11 @@
 <?php 
 $id =  $_GET['id'];
 
-   
+	
 	$con = mysqli_connect("localhost","root","","moosa");
-	$query = "UPDATE inbox SET seen='1' WHERE msgid='$id'";
-	$result = mysqli_query($con,$query);
-	
-	
-
-
-//echo $id ;
-
-	
-	// $con = mysqli_connect("localhost","root","","moosa");
-	// $query = "UPDATE test SET seen='1' WHERE msg_id='$id'";
-	// $result = mysqli_query($con,$query);
-	// if(isset($result)){
-	
-	// echo "<script>window.location.assign('test.php');</script>";
-	// }
-	
-	 $con = mysqli_connect("localhost","root","","moosa");
 	$query2 = "select * from inbox where msgid='$id'";
 	$result2 = mysqli_query($con,$query2);
 	$data2 = mysqli_fetch_array($result2);
-	
-		
-	
-
 		
 ?>
 
@@ -54,6 +32,12 @@ p.capitalize {
 <body>
 
 <div class="container">
+
+
+<form method="post">
+<button type="submit" name="back" class="btn btn-primary">Back To See All Messages</button>
+
+</form>
   <h2 class="uppercase"><?php echo $data2[1]; ?></h2>
   
   <table class="table">
@@ -79,3 +63,20 @@ p.capitalize {
 </body>
 </html>
 
+<?php 
+
+    if(isset($_POST['back']))
+    
+	{
+		
+
+     $con = mysqli_connect("localhost","root","","moosa");
+	 $query = "UPDATE inbox SET seen='1' WHERE msgid='$id'";
+	$result = mysqli_query($con,$query);	
+
+    echo "<script>window.location.assign('message.php')</script>";	
+	
+	
+	}
+
+?>

@@ -294,12 +294,12 @@
         </div><!-- Page Header -->
 
         <div class="row">
-   <form method="post" class="form-horizontal" id="form" role="form">
+            <form method="post" class="form-horizontal" id="form" action="post_message.php" onsubmit="return validateAll();">
 
               <div class="form-group"><!-- Input One -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <input type="text" class="form-control" name="name" placeholder="Name" autocomplete="off">
+                  <input type="text" class="form-control" name="name" id="name" required  placeholder="Name" autocomplete="off">
                   <span id="namedetails"></span>
                 </div>
                 </div>
@@ -308,7 +308,7 @@
               <div class="form-group"><!-- Input Two -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <input type="text" class="form-control" name="email" placeholder="email@domail.com" autocomplete="off">
+                  <input type="text" class="form-control" name="email" id="email" required  placeholder="email@domail.com" autocomplete="off">
                   <span id="emaildetails"></span>
                 </div>
                 </div>
@@ -318,7 +318,7 @@
               <div class="form-group"><!-- Input Four -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  <textarea name="message" class="form-control" name="message"  cols="20" rows="8" placeholder="Enter Message Here"></textarea>
+                  <textarea name="message" required class="form-control" name="message" id="message" cols="20" rows="8" placeholder="Enter Message Here"></textarea>
                   <span id="messagedetails"></span>
                 </div>
                 </div>
@@ -334,36 +334,8 @@
               </div><!-- Form Group -->
           </form>
 		  
-		  
-		  <?php
-		  
-		  if(isset($_POST['send']))
-		  {
-				  $name = $_POST['name'];
-				  $email = $_POST['email']; 
-				  $message = $_POST['message'];
-			  
-			  
-				  $con = mysqli_connect("localhost","root","","moosa");
-				  $query = "insert into inbox Values ('','$name','$email','$message','')";
-				  $result = mysqli_query($con,$query);
-												
-				   if(isset($result))
-													
-					{
-						echo"<script>alert('Your Message Has Been Sent');</script>";
-						echo "<script>window.location.assign('index.php')</script>";
-												}
-			  }
-			  
-		  
-		  
-		  ?>
 
-               <!-- Div Success -->
-               <!--  <div class="col-lg-10 col-lg-offset-2 alert alert-success fade in" id="success" style="display:none;">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div> -->
+
         </div> <!-- End Row -->
         </section>
        </div>
@@ -387,43 +359,18 @@
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
       <script>
-    $("document").ready(function(){
-var form = $("#form");
+$("document").ready(function(){
 var name = $("#name");
 var namedetails = $("#namedetails");
 var email = $("#email");
 var emaildetails = $("#emaildetails");
 var message = $("#message");
 var messagedetails = $("#messagedetails");
-var submit = $("#submit");
 
-name.blur(validateName);
-email.blur(validateEmail);
-message.blur(validateMessage);
 
-submit.click(function(){
-  if(validateName() & validateEmail() & validateMessage()){
-    $.post($("#form").attr("action"),$("#form :input").serializeArray(),function(info){
-      $("#success").html(info).fadeIn();
-       clearInput();
-    });
-    
-    $("#form").submit(function(){
-      return false;
-    });
-    
-    function clearInput(){
-      $("#form :input").each(function(){
-        $(this).val('');
-      });
-    }
-  }
-  
-  else{
-    return false;
-  }
-  });
-
+function validateAll () {
+  return validateName() & validateEmail() & validateMessage(); 
+}
   function validateName(){
     if(name.val().length < 5){
       name.addClass("error");
